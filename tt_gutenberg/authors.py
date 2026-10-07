@@ -1,14 +1,11 @@
-from tt_gutenberg.data import load_gutenberg_data
+from tt_gutenberg.transform import get_data, get_languages
 
 
 def list_authors(by_languages=True, alias=True):
-    authors, metadata, languages = load_gutenberg_data()
+    author_metadata = get_data()
+    languages = get_languages()
 
-    # Merge author information with book information
-    author_metadata = authors.merge(
-        metadata,
-        on="gutenberg_author_id"
-    )
+   
 
     # Add language information
     full_data = author_metadata.merge(
